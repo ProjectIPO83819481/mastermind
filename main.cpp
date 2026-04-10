@@ -7,14 +7,24 @@ import mastermind;
 
 int main()
 {
-    MasterMindGame game{3};
-    for (auto i : game.answer) {
-        std::cout << i ;
+    size_t field_size = 0;
+    std::cout << "Enter the field size: ";
+    std::cin >> field_size;
+    if(field_size > 0) {
+        MasterMindGame game{ field_size };
+        size_t steps = 0;
+
+        std::cout << "Enter the number of steps: ";
+        std::cin >> steps;
+        if (steps <= 0) {
+            std::abort();
+        }
+        game.run(steps);
+
     }
-    std::vector<Colors> i = { Colors::RED, Colors::RED,Colors::RED };
-    std::pair<int, int> a = step(game.answer, i);
-    std::cout<< std::endl << a.first << "  " << a.second;
-    game.run();
+    else {
+        std::abort();
+    }
 }
 
 // Запуск программы: CTRL+F5 или меню "Отладка" > "Запуск без отладки"
